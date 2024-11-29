@@ -23,7 +23,7 @@ const Work = () => {
             My Latest Work.
           </h2>
           <p className="text-center mb-16">
-            Here’s the selection of my recent projects showcasing my skills in
+            Here’s a selection of my recent projects showcasing my skills in
             UI/UX design and development. These projects reflect a blend of
             creativity, technical expertise, and user-centered design
             principles.
