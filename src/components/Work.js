@@ -1,82 +1,103 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { fadeIn } from "../variants";
-import Img1 from "../assets/portfolio-img1.png";
-import Img2 from "../assets/portfolio-img2.png";
-import Img3 from "../assets/portfolio-img3.png";
+import { FaCode } from "react-icons/fa";
+import ProjectDetailsPopup from "./ProjectDetailsPopup"; // Import the popup component
+import { projects } from "../data/projectData"; // Import the projects data
 
 const Work = () => {
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedProject, setSelectedProject] = useState(null);
+
+  // Filter projects based on the selected category
+  const filteredProjects =
+    selectedCategory === "All"
+      ? projects
+      : projects.filter((project) => project.category === selectedCategory);
+
   return (
     <div id="work" className="section">
       <div className="container mx-auto">
-        <div className="flex flex-col lg:flex-row gap-x-8">
-          <motion.div 
-          variants={fadeIn("right", 0.3)}
-          initial="hidden"
-          whileInView={"show"}
-          className="flex-1 flex flex-col gap-y-12 mb-8 lg:mb-0">
-            <div>
-              <h2 className="h2 leading-tight text-accent">My Latest Work.</h2>
-              <p className="max-w-sm mb-16">
-                Here’s a selection of my recent projects showcasing my skills in
-                UI/UX design and development. These projects reflect a blend of
-                creativity, technical expertise, and user-centered design
-                principles.
-              </p>
-              <button className="btn btn-sm">View all projects</button>
-            </div>
-            <div className="group relative overflow-hidden border-2 border-white/50 rounded-xl">
-              <div className="group-hover:bg-black/70 w-full h-full absolute z-40 transition-all duration-300"></div>
-              <img
-                className="group-hover:scale-125 transition-all duration-500"
-                src={Img1}
-                alt=""
-              />
-              <div className="absolute -bottom-full left-12 group-hover:bottom-24 transition-all duration-500 z-50">
-                <span className="text-gradient">UI/UX Design</span>
-              </div>
-              <div className="absolute -bottom-full left-12 group-hover:bottom-14 transition-all duration-500 z-50">
-                <span className="text-3xl text-white">Project Title</span>
-              </div>
-            </div>
-          </motion.div>
-          <motion.div
-            variants={fadeIn("left", 0.2)}
-            initial="hidden"
-            whileInView={"show"}
-            className="flex-1 flex flex-col gap-y-8"
-          >
-            <div className="group relative overflow-hidden border-2 border-white/50 rounded-xl">
-              <div className="group-hover:bg-black/70 w-full h-full absolute z-40 transition-all duration-300"></div>
-              <img
-                className="group-hover:scale-125 transition-all duration-500"
-                src={Img2}
-                alt=""
-              />
-              <div className="absolute -bottom-full left-12 group-hover:bottom-24 transition-all duration-500 z-50">
-                <span className="text-gradient">UI/UX Design</span>
-              </div>
-              <div className="absolute -bottom-full left-12 group-hover:bottom-14 transition-all duration-500 z-50">
-                <span className="text-3xl text-white">Project Title</span>
-              </div>
-            </div>
+        <div className="mb-10">
+          <h2 className="h2 leading-tight text-center text-accent">
+            My Latest Work.
+          </h2>
+          <p className="text-center mb-16">
+            Here’s a selection of my recent projects showcasing my skills in
+            UI/UX design and development. These projects reflect a blend of
+            creativity, technical expertise, and user-centered design
+            principles.
+          </p>
 
-            <div className="group relative overflow-hidden border-2 border-white/50 rounded-xl">
-              <div className="group-hover:bg-black/70 w-full h-full absolute z-40 transition-all duration-300"></div>
-              <img
-                className="group-hover:scale-125 transition-all duration-500"
-                src={Img3}
-                alt=""
-              />
-              <div className="absolute -bottom-full left-12 group-hover:bottom-24 transition-all duration-500 z-50">
-                <span className="text-gradient">UI/UX Design</span>
-              </div>
-              <div className="absolute -bottom-full left-12 group-hover:bottom-14 transition-all duration-500 z-50">
-                <span className="text-3xl text-white">Project Title</span>
-              </div>
-            </div>
-          </motion.div>
+          {/* Category Buttons */}
+          <div className="flex gap-4 mb-10 justify-center">
+            {["All", "Web", "Mobile"].map((category) => (
+              <button
+                key={category}
+                onClick={() => setSelectedCategory(category)}
+                className={`w-32 px-4 py-2 rounded-md border-2 ${
+                  selectedCategory === category
+                    ? "bg-accent text-white"
+                    : "bg-transparent text-accent border-accent"
+                } transition duration-300`}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
         </div>
+
+        {/* Project Grid */}
+        <div className="flex flex-col lg:flex-row gap-x-8">
+          {filteredProjects.map((project) => (
+            <motion.div
+              key={project.id}
+              variants={fadeIn("right", 0.3)}
+              initial="hidden"
+              whileInView="show"
+              className="flex-1 flex flex-col gap-y-12 mb-8 lg:mb-0"
+            >
+              <div
+                onClick={() => setSelectedProject(project)} // Open the modal with selected project
+                className="group relative overflow-hidden border-2 border-white/50 rounded-xl cursor-pointer"
+              >
+                {/* Code Button */}
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="absolute top-4 right-4 z-50 bg-accent text-white rounded-full p-2 hover:bg-accent-dark transition duration-300"
+                  title="View Code"
+                  onClick={(e) => e.stopPropagation()} // Prevent opening modal
+                >
+                  <FaCode size={20} />
+                </a>
+
+                {/* Image and Overlay */}
+                <div className="group-hover:bg-black/70 w-full h-full absolute z-40 transition-all duration-300"></div>
+                <img
+                  className="group-hover:scale-125 transition-all duration-500"
+                  src={project.img}
+                  alt={project.title}
+                />
+                <div className="absolute -bottom-full left-12 group-hover:bottom-36 transition-all duration-500 z-50">
+                  <span className="text-gradient">{project.name}</span>
+                </div>
+                <div className="absolute -bottom-full left-12 group-hover:bottom-14 transition-all duration-500 z-50">
+                  <span className="text-3xl text-white">{project.title}</span>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Project Details Popup */}
+        {selectedProject && (
+          <ProjectDetailsPopup
+            project={selectedProject}
+            onClose={() => setSelectedProject(null)}
+          />
+        )}
       </div>
     </div>
   );
