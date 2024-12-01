@@ -4,6 +4,7 @@ import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
 import { TypeAnimation } from "react-type-animation";
 import { motion } from "framer-motion";
 import { fadeIn } from "../variants";
+import { Link } from "react-scroll";
 
 const Banner = () => {
   return (
@@ -36,9 +37,11 @@ const Banner = () => {
                 sequence={[
                   "Web Developer",
                   2000,
-                  "Designer",
+                  "UI/UX Designer",
                   2000,
-                  "Software Developer",
+                  "Full Stack Developer",
+                  2000,
+                  "Programmer",
                   2000,
                 ]}
                 speed={50}
@@ -54,7 +57,11 @@ const Banner = () => {
               viewport={{ once: false, amount: 0.7 }}
               className="mb-8 max-w-lg mx-auto lg:mx-0"
             >
-              I'm a software engineering undergraduate passionate about creating innovative solutions to enhance organizational efficiency. A motivated, adaptable, and team-oriented leader with strong interpersonal and communication skills, I thrive in collaborative environments and excel at managing and inspiring teams.
+              I'm a software engineering undergraduate passionate about creating
+              innovative solutions to enhance organizational efficiency. A
+              motivated, adaptable, and team-oriented leader with strong
+              interpersonal and communication skills, I thrive in collaborative
+              environments and excel at managing and inspiring teams.
             </motion.p>
             {/* Buttons Section */}
             <motion.div
@@ -64,10 +71,26 @@ const Banner = () => {
               viewport={{ once: false, amount: 0.7 }}
               className="flex items-center gap-x-6 mb-12 lg:justify-start"
             >
-              <button className="btn btn-lg">Contact me</button>
-              <a href="#" className="text-gradient btn-link">
+              <button
+                className="btn btn-lg"
+                onClick={() => {
+                  window.open(
+                    "https://www.canva.com/design/DAGXv-CvZmw/eJ0tUzA3rqCDbr-eRoYlpA/view?utm_content=DAGXv-CvZmw&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h137f5363c9",
+                    "_blank"
+                  );
+                }}
+              >
+                Check Resume
+              </button>
+              <Link
+                to="work"
+                smooth={true}
+                spy={true}
+                offset={-50}
+                className="text-gradient btn-link"
+              >
                 My Portfolio
-              </a>
+              </Link>
             </motion.div>
             {/* Social Icons */}
             <motion.div

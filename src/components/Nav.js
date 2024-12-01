@@ -5,6 +5,9 @@ import {
   BsBriefcase,
   BsChatSquareText,
 } from "react-icons/bs";
+import { RiGraduationCapLine } from "react-icons/ri";
+
+
 
 import { Link } from "react-scroll";
 
@@ -31,6 +34,15 @@ const Nav = () => {
             className="cursor-pointer w-[60px] h-[60px] flex items-center justify-center"
           >
             <BiUser />
+          </Link>
+          <Link
+            to="education"
+            activeClass='active'
+            smooth={true}
+            spy={true}
+            className="cursor-pointer w-[60px] h-[60px] flex items-center justify-center"
+          >
+            <RiGraduationCapLine />
           </Link>
           <Link
             to="services"

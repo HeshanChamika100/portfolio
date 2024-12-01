@@ -2,7 +2,6 @@ import Img1 from "../assets/portfolio-img1.png";
 import Img2 from "../assets/portfolio-img2.png";
 import Img3 from "../assets/portfolio-img3.png";
 
-// Import technology logos (assuming logos are in the assets folder)
 import ReactLogo from "../assets/technologies/react-logo.png"; // Example logo path
 
 export const projects = [

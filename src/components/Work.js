@@ -9,6 +9,13 @@ const Work = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [selectedProject, setSelectedProject] = useState(null);
 
+  // Calculate project counts for each category
+  const categoryCounts = {
+    All: projects.length,
+    Web: projects.filter((project) => project.category === "Web").length,
+    Mobile: projects.filter((project) => project.category === "Mobile").length,
+  };
+
   // Filter projects based on the selected category
   const filteredProjects =
     selectedCategory === "All"
@@ -31,7 +38,7 @@ const Work = () => {
 
           {/* Category Buttons */}
           <div className="flex gap-4 mb-10 justify-center">
-            {["All", "Web", "Mobile"].map((category) => (
+            {Object.entries(categoryCounts).map(([category, count]) => (
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
@@ -41,7 +48,7 @@ const Work = () => {
                     : "bg-transparent text-accent border-accent"
                 } transition duration-300`}
               >
-                {category}
+                {`${category} (${count})`}
               </button>
             ))}
           </div>
