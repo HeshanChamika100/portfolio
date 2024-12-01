@@ -114,17 +114,17 @@ const Banner = () => {
 
           {/* Right Section */}
           <motion.div
-            variants={fadeIn("down", 0.5)}
-            initial="hidden"
-            whileInView={"show"}
-            className="hidden lg:flex flex-1 max-w-[480px] lg:max-w-[600px]"
-          >
-            <img
-              src={Image}
-              alt="Avatar"
-              className="w-full h-auto object-cover"
-            />
-          </motion.div>
+  variants={fadeIn("down", 0.5)}
+  initial="hidden"
+  whileInView={"show"}
+  className="flex justify-center lg:flex-1 max-w-[280px] sm:max-w-[360px] lg:max-w-[600px] mx-auto"
+>
+  <img
+    src={Image}
+    alt="Avatar"
+    className="w-full h-auto object-cover rounded-full"
+  />
+</motion.div>
         </div>
       </div>
     </section>

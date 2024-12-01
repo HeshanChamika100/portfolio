@@ -2,6 +2,7 @@ import React from "react";
 import { BsArrowUpRight } from "react-icons/bs";
 import { motion } from "framer-motion";
 import { fadeIn } from "../variants";
+import { Link } from "react-scroll";
 
 // Services data
 const services = [
@@ -42,7 +43,16 @@ const Services = () => {
             <h3 className="h3 max-w-[455px] mb-6">
               I'm a Web Developer with over 3 years of experience.
             </h3>
-            <button className="btn btn-sm">See my work</button>
+
+            <Link
+                to="work"
+                smooth={true}
+                spy={true}
+                offset={-50}
+                className="btn btn-sm py-4"
+              >
+                My Portfolio
+              </Link>
           </motion.div>
 
           {/* Services Section */}
